@@ -1,5 +1,6 @@
 <script>
     import BlogCard from "../components/BlogCard.svelte";
+
     const data = [
         {
             title: "Introduction to Svelte",
@@ -62,6 +63,16 @@
             url: "https://example.com/sveltekit-plugins-and-tools",
         },
     ];
+    const tags = [
+        {
+            title: "Quick Start",
+            url: "/quick-start",
+        },
+        {
+            title: "Useful repos",
+            url: "/repos",
+        },
+    ];
 </script>
 
 <svelte:head>
@@ -76,19 +87,19 @@
             <BlogCard cardInfo={blog} />
         {/each}
     </div>
-    <div class="side-cards"></div>
 </main>
 
 <style>
     .blog-list {
-        width: 100%;
+        width: 90%;
     }
     main {
         width: 100%;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
     }
     .side-cards {
-        width: 100%;
+        width: 90%;
+        margin-left: 10px;
     }
 </style>
