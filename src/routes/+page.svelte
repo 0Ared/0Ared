@@ -71,8 +71,14 @@
 <h1> Ajin Varghese Chandy. </h1>
 <p> dev stuff 👇 </p>
 
-<div>
+<div class="blog-list">
     {#each data as blog}
         <BlogCard cardInfo={blog} />
     {/each}
 </div>
+
+<style>
+    .blog-list {
+        width: 60%;
+    }
+</style>
