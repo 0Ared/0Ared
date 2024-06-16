@@ -3,6 +3,7 @@
     import "@picocss/pico/css/pico.slate.min.css";
     import { inject } from "@vercel/analytics";
     import NavBar from "../components/NavBar.svelte";
+    import Footer from "../components/Footer.svelte";
     inject({ mode: dev ? "development" : "production" });
 </script>
 
@@ -29,3 +30,4 @@
 <div class="container">
     <slot />
 </div>
+<Footer />
