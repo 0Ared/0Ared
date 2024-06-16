@@ -70,12 +70,14 @@
 
 <h1> Ajin Varghese Chandy. </h1>
 <p> dev stuff 👇 </p>
-
-<div class="blog-list">
-    {#each data as blog}
-        <BlogCard cardInfo={blog} />
-    {/each}
-</div>
+<main>
+    <div class="blog-list">
+        {#each data as blog}
+            <BlogCard cardInfo={blog} />
+        {/each}
+    </div>
+    <div class="side-card"></div>
+</main>
 
 <style>
     .blog-list {
