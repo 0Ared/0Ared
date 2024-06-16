@@ -9,3 +9,9 @@
         <li><a href="/about" class="contrast">About</a></li>
     </ul>
 </nav>
+
+<style>
+    nav {
+        margin: 20px;
+    }
+</style>
