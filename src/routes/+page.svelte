@@ -76,11 +76,19 @@
             <BlogCard cardInfo={blog} />
         {/each}
     </div>
-    <div class="side-card"></div>
+    <div class="side-cards"></div>
 </main>
 
 <style>
     .blog-list {
-        width: 60%;
+        width: 100%;
+    }
+    main {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .side-cards {
+        width: 100%;
     }
 </style>
