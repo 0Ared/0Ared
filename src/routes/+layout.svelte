@@ -2,6 +2,7 @@
     import { dev } from "$app/environment";
     import "@picocss/pico/css/pico.slate.min.css";
     import { inject } from "@vercel/analytics";
+    import NavBar from "../components/NavBar.svelte";
     inject({ mode: dev ? "development" : "production" });
 </script>
 
@@ -24,7 +25,7 @@
     <meta property="og:url" content="https://ared.dev/" />
     <meta property="og:image" content="https://ared.dev/ared.png" />
 </svelte:head>
-
+<NavBar />
 <div class="container">
     <slot />
 </div>
