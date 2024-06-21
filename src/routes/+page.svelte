@@ -100,8 +100,4 @@
         display: flex;
         justify-content: space-between;
     }
-    .side-cards {
-        width: 90%;
-        margin-left: 10px;
-    }
 </style>
