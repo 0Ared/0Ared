@@ -5,8 +5,8 @@
 </script>
 
 <a href={url}>
-    <article>
+    <div>
         <h3>{title}</h3>
         <p>{description}</p>
-    </article>
+    </div>
 </a>
