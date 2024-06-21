@@ -93,7 +93,7 @@
 
 <style>
     .blog-list {
-        width: 90%;
+        width: 100%;
     }
     main {
         width: 100%;
