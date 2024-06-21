@@ -83,9 +83,11 @@
 <p> dev stuff 👇 </p>
 <main>
     <div class="blog-list">
-        {#each data as blog}
-            <BlogCard cardInfo={blog} />
-        {/each}
+        <article>
+            {#each data as blog}
+                <BlogCard cardInfo={blog} />
+            {/each}
+        </article>
     </div>
 </main>
 
