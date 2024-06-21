@@ -21,7 +21,8 @@
 
 <nav>
     <ul>
-        <li class="title"><strong on:click={handleThemeSwitch}>ARed</strong></li
+        <li class="title"
+            ><strong on:click={handleThemeSwitch}>A<span>R</span>ed</strong></li
         >
     </ul>
     <ul>
@@ -39,5 +40,8 @@
     .title strong {
         font-stretch: extra-expanded;
         font-size: 2.3rem;
+    }
+    .title strong span {
+        color: red;
     }
 </style>
