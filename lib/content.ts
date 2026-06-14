@@ -35,6 +35,7 @@ export type Hero = {
   subtitle: string;
   description: string;
   tags: string[];
+  profileImage?: string;
   hireButton?: {
     visible: boolean;
     label: string;
@@ -51,6 +52,7 @@ export type Email = {
   to: string;
   subject: string;
   body: string;
+  url?: string;
 };
 
 export type Review = {
@@ -182,6 +184,7 @@ export function getDefaultContent(): SiteContent {
       subtitle: "Full Stack Product Builder",
       description:
         "Building scalable web products focused on automation, real-time systems, and AI integrations.",
+      profileImage: "",
       tags: [
         "REST APIs",
         "Auth & JWT",

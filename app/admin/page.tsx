@@ -553,12 +553,39 @@ function HeroEditor({
   onUpdate: (hero: Hero) => void;
 }) {
   const hb = hero.hireButton || { visible: true, label: "Hire Me" };
+  const [showPicker, setShowPicker] = useState(false);
   return (
     <div className="flex flex-col gap-3">
+      {showPicker && (
+        <ImagePickerModal
+          onSelect={(url) => {
+            onUpdate({ ...hero, profileImage: url });
+            setShowPicker(false);
+          }}
+          onClose={() => setShowPicker(false)}
+        />
+      )}
       <Input label="Name" value={hero.name || ""} onChange={(e) => onUpdate({ ...hero, name: e.target.value })} />
       <Input label="Subtitle" value={hero.subtitle} onChange={(e) => onUpdate({ ...hero, subtitle: e.target.value })} />
       <Textarea label="Description" rows={2} value={hero.description} onChange={(e) => onUpdate({ ...hero, description: e.target.value })} />
       <Input label="Tags (comma-separated)" value={hero.tags.join(", ")} onChange={(e) => onUpdate({ ...hero, tags: e.target.value.split(",").map((s) => s.trim()) })} />
+      <div className="rounded-lg border border-[#2a2a3a] bg-[#0a0a0f] p-4">
+        <p className="mb-3 text-[10px] uppercase tracking-wider text-[#555570]">Profile Image</p>
+        <div className="flex items-center gap-3">
+          {hero.profileImage ? (
+            <>
+              <img src={hero.profileImage} alt="Profile" className="h-16 w-16 rounded-full border border-[#2a2a3a] object-cover" />
+              <button onClick={() => onUpdate({ ...hero, profileImage: undefined })} className="text-xs text-red-400 hover:text-red-300">
+                Remove
+              </button>
+            </>
+          ) : (
+            <button onClick={() => setShowPicker(true)} className="rounded border border-[#2a2a3a] px-3 py-1.5 text-xs text-[#7070a0] transition hover:border-[#6060a0] hover:text-[#e8e8f0]">
+              Select Image
+            </button>
+          )}
+        </div>
+      </div>
       <div className="rounded-lg border border-[#2a2a3a] bg-[#0a0a0f] p-4">
         <p className="mb-3 text-[10px] uppercase tracking-wider text-[#555570]">Hire Button</p>
         <div className="flex flex-col gap-3">
@@ -749,6 +776,7 @@ function EmailEditor({
         <Input label="Subject Template" value={email.subject} onChange={(e) => onUpdate({ ...email, subject: e.target.value })} />
         <p className="mt-1 text-[10px] text-[#555570]">Use %email% as a placeholder for the sender&apos;s address</p>
       </div>
+      <Input label="Custom URL (optional)" value={email.url || ""} onChange={(e) => onUpdate({ ...email, url: e.target.value || undefined })} placeholder="https://mail.google.com/mail/?view=cm&to=..." />
     </div>
   );
 }

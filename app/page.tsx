@@ -16,6 +16,9 @@ export default async function Home() {
   // Derive first name for gradient highlight
   const firstName = (content.hero.name || "Ajin").split(" ")[0];
 
+  const sectionLabel = (key: string): string =>
+    sections.find((s) => s.key === key)?.label || key;
+
   const sectionComponents: Record<string, () => React.ReactNode> = {
     hero: () => (
       <>
@@ -29,11 +32,20 @@ export default async function Home() {
           hireMeEmail={content.email.to}
           hireMeSubject={content.email.subject}
           hireMeBody={content.email.body}
+          hireMeUrl={content.email.url}
           showHireMe={content.hero.hireButton?.visible !== false}
         />
 
         {/* ── Hero ── */}
         <section className="flex min-h-[100svh] flex-col items-center justify-center px-5 pt-20 text-center">
+          {content.hero.profileImage && (
+            <img
+              src={content.hero.profileImage}
+              alt={content.hero.name}
+              className="mx-auto mb-8 h-32 w-32 rounded-full border-4 object-cover shadow-lg sm:h-40 sm:w-40"
+              style={{ borderColor: "var(--color-border)" }}
+            />
+          )}
           <h1 className="hero-greeting text-[clamp(2.8rem,9vw,5.5rem)] font-extrabold leading-[1.1] tracking-tight">
             <span style={{ color: "var(--color-text)" }}>Hi </span>
             <span role="img" aria-label="wave" className="inline-block animate-wave">👋</span>
@@ -57,7 +69,7 @@ export default async function Home() {
               </>
             )}
             <a
-              href={`https://mail.google.com/mail/?view=cm&to=${content.email.to}&su=${content.email.subject}&body=${content.email.body}`}
+              href={content.email.url || `https://mail.google.com/mail/?view=cm&to=${content.email.to}&su=${content.email.subject}&body=${content.email.body}`}
               target="_blank"
               rel="noreferrer"
               className="underline underline-offset-2 transition hover:opacity-80"
@@ -94,7 +106,7 @@ export default async function Home() {
         <div className="mx-auto w-full max-w-3xl">
           <div className="mb-8 flex items-center gap-4 sm:mb-10">
             <span className="text-[10px] uppercase tracking-[0.25em] text-[var(--color-text-muted)] sm:text-xs">02</span>
-            <h2 className="text-lg font-semibold tracking-wide text-[var(--color-text)] sm:text-xl">Reviews</h2>
+            <h2 className="text-lg font-semibold tracking-wide text-[var(--color-text)] sm:text-xl">{sectionLabel("reviews")}</h2>
             <div className="h-px flex-1 bg-[var(--color-border)]" />
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
@@ -108,7 +120,7 @@ export default async function Home() {
         <div className="mx-auto w-full max-w-3xl">
           <div className="mb-8 flex items-center gap-4 sm:mb-10">
             <span className="text-[10px] uppercase tracking-[0.25em] text-[var(--color-text-muted)] sm:text-xs">03</span>
-            <h2 className="text-lg font-semibold tracking-wide text-[var(--color-text)] sm:text-xl">Skills</h2>
+            <h2 className="text-lg font-semibold tracking-wide text-[var(--color-text)] sm:text-xl">{sectionLabel("skills")}</h2>
             <div className="h-px flex-1 bg-[var(--color-border)]" />
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
@@ -133,7 +145,7 @@ export default async function Home() {
         <div className="mx-auto w-full max-w-3xl">
           <div className="mb-8 flex items-center gap-4 sm:mb-10">
             <span className="text-[10px] uppercase tracking-[0.25em] text-[var(--color-text-muted)] sm:text-xs">04</span>
-            <h2 className="text-lg font-semibold tracking-wide text-[var(--color-text)] sm:text-xl">Technical Experience</h2>
+            <h2 className="text-lg font-semibold tracking-wide text-[var(--color-text)] sm:text-xl">{sectionLabel("experience")}</h2>
             <div className="h-px flex-1 bg-[var(--color-border)]" />
           </div>
         
@@ -184,7 +196,7 @@ export default async function Home() {
         <div className="mx-auto w-full max-w-3xl">
           <div className="mb-8 flex items-center gap-4 sm:mb-10">
             <span className="text-[10px] uppercase tracking-[0.25em] text-[var(--color-text-muted)] sm:text-xs">05</span>
-            <h2 className="text-lg font-semibold tracking-wide text-[var(--color-text)] sm:text-xl">Projects</h2>
+            <h2 className="text-lg font-semibold tracking-wide text-[var(--color-text)] sm:text-xl">{sectionLabel("projects")}</h2>
             <div className="h-px flex-1 bg-[var(--color-border)]" />
           </div>
           <div className="flex flex-col gap-4 sm:gap-6">
@@ -215,7 +227,7 @@ export default async function Home() {
         <div className="mx-auto w-full max-w-3xl">
           <div className="mb-8 flex items-center gap-4 sm:mb-10">
             <span className="text-[10px] uppercase tracking-[0.25em] text-[var(--color-text-muted)] sm:text-xs">06</span>
-            <h2 className="text-lg font-semibold tracking-wide text-[var(--color-text)] sm:text-xl">Contact</h2>
+            <h2 className="text-lg font-semibold tracking-wide text-[var(--color-text)] sm:text-xl">{sectionLabel("contact")}</h2>
             <div className="h-px flex-1 bg-[var(--color-border)]" />
           </div>
           <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-5 sm:p-6">

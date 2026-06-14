@@ -9,6 +9,7 @@ type NavbarProps = {
   hireMeEmail?: string;
   hireMeSubject?: string;
   hireMeBody?: string;
+  hireMeUrl?: string;
   showHireMe?: boolean;
 };
 
@@ -21,11 +22,12 @@ export function Navbar({
   hireMeEmail,
   hireMeSubject = "",
   hireMeBody = "",
+  hireMeUrl,
   showHireMe = true,
 }: NavbarProps) {
-  const hireMeHref = hireMeEmail
+  const hireMeHref = hireMeUrl || (hireMeEmail
     ? `https://mail.google.com/mail/?view=cm&to=${hireMeEmail}&su=${hireMeSubject}&body=${hireMeBody}`
-    : "#";
+    : "#");
   return (
     <header
       className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 sm:px-10"
