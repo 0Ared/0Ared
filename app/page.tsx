@@ -3,6 +3,8 @@ import { ReviewGrid } from "./components/ReviewGrid";
 import { ContactForm } from "./components/ContactForm";
 import { MarkdownContent } from "./components/MarkdownContent";
 import { Navbar } from "./components/Navbar";
+import { TypingGreeting } from "./components/TypingGreeting";
+import { HeroScrollAnimation } from "./components/HeroScrollAnimation";
 import { getAllContent } from "@/lib/data";
 
 export default async function Home() {
@@ -38,66 +40,66 @@ export default async function Home() {
 
         {/* ── Hero ── */}
         <section className="flex min-h-[100svh] flex-col items-center justify-center px-5 pt-20 text-center">
-          {content.hero.profileImage && (
-            <img
-              src={content.hero.profileImage}
-              alt={content.hero.name}
-              className="mx-auto mb-8 h-32 w-32 rounded-full border-4 object-cover shadow-lg sm:h-40 sm:w-40"
-              style={{ borderColor: "var(--color-border)" }}
-            />
-          )}
-          <h1 className="hero-greeting text-[clamp(2.8rem,9vw,5.5rem)] font-extrabold leading-[1.1] tracking-tight">
-            <span style={{ color: "var(--color-text)" }}>Hi </span>
-            <span role="img" aria-label="wave" className="inline-block animate-wave">👋</span>
-            <span style={{ color: "var(--color-text)" }}>, I&apos;m </span>
-            <span className="hero-name-gradient">{firstName}</span>
-            <span style={{ color: "var(--color-text)" }}>.</span>
-          </h1>
-
-          <p className="mt-6 max-w-xl text-base leading-relaxed sm:text-lg"
-            style={{ color: "var(--color-text-secondary)" }}>
-            {content.hero.description}{" "}
-            {content.social.github && (
+          <HeroScrollAnimation>
+            {content.hero.profileImage && (
               <>
-                Explore{" "}
-                <a href={content.social.github} target="_blank" rel="noreferrer"
-                  className="underline underline-offset-2 transition hover:opacity-80"
-                  style={{ color: "var(--color-accent-hover)" }}>
-                  my projects
-                </a>{" "}
-                and{" "}
+                <link rel="preload" as="image" href={content.hero.profileImage} />
+                <img
+                  src={content.hero.profileImage}
+                  alt={content.hero.name}
+                  fetchPriority="high"
+                  className="mx-auto mb-8 h-32 w-32 rounded-full border-4 object-cover shadow-lg sm:h-40 sm:w-40"
+                  style={{ borderColor: "var(--color-border)" }}
+                />
               </>
             )}
-            <a
-              href={content.email.url || `https://mail.google.com/mail/?view=cm&to=${content.email.to}&su=${content.email.subject}&body=${content.email.body}`}
-              target="_blank"
-              rel="noreferrer"
-              className="underline underline-offset-2 transition hover:opacity-80"
-              style={{ color: "var(--color-accent-hover)" }}>
-              get in touch
-            </a>{" "}
-            while you are here.
-          </p>
+            <TypingGreeting firstName={firstName} />
 
-          <div className="mt-6 flex flex-wrap justify-center gap-2 max-w-xl mx-auto">
-            {content.hero.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border px-3 py-1 text-xs"
-                style={{ borderColor: "var(--color-border)", color: "var(--color-text-secondary)" }}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+            <p className="mt-6 max-w-xl text-base leading-relaxed sm:text-lg"
+              style={{ color: "var(--color-text-secondary)" }}>
+              {content.hero.description}{" "}
+              {content.social.github && (
+                <>
+                  Explore{" "}
+                  <a href={content.social.github} target="_blank" rel="noreferrer"
+                    className="underline underline-offset-2 transition hover:opacity-80"
+                    style={{ color: "var(--color-accent-hover)" }}>
+                    my projects
+                  </a>{" "}
+                  and{" "}
+                </>
+              )}
+              <a
+                href={content.email.url || `https://mail.google.com/mail/?view=cm&to=${content.email.to}&su=${content.email.subject}&body=${content.email.body}`}
+                target="_blank"
+                rel="noreferrer"
+                className="underline underline-offset-2 transition hover:opacity-80"
+                style={{ color: "var(--color-accent-hover)" }}>
+                get in touch
+              </a>{" "}
+              while you are here.
+            </p>
 
-          <div className="mt-12 flex flex-col items-center gap-1" style={{ color: "var(--color-border)" }}>
-            <span className="text-[10px] tracking-widest uppercase">Scroll</span>
-            <svg width="16" height="24" viewBox="0 0 16 24" fill="none" aria-hidden="true">
-              <rect x="1" y="1" width="14" height="22" rx="7" stroke="currentColor" strokeWidth="1.5" />
-              <circle cx="8" cy="7" r="2" fill="currentColor" className="animate-bounce" />
-            </svg>
-          </div>
+            <div className="mt-6 flex flex-wrap justify-center gap-2 max-w-xl mx-auto">
+              {content.hero.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border px-3 py-1 text-xs"
+                  style={{ borderColor: "var(--color-border)", color: "var(--color-text-secondary)" }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-12 flex flex-col items-center gap-1" style={{ color: "var(--color-border)" }}>
+              <span className="text-[10px] tracking-widest uppercase">Scroll</span>
+              <svg width="16" height="24" viewBox="0 0 16 24" fill="none" aria-hidden="true">
+                <rect x="1" y="1" width="14" height="22" rx="7" stroke="currentColor" strokeWidth="1.5" />
+                <circle cx="8" cy="7" r="2" fill="currentColor" className="animate-bounce" />
+              </svg>
+            </div>
+          </HeroScrollAnimation>
         </section>
       </>
     ),
